@@ -1,6 +1,6 @@
 /**
-* 测试集合青蛙和KR的修改适配
-*cron 1 1 1 1 1
+ 测试集合青蛙和KR的修改适配
+cron 1 1 1 1 1
 */
 const $ = new Env('通用开卡');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
