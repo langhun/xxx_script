@@ -1,7 +1,7 @@
 /*
 [task_local]
 #joy抽奖机通用
-0 0,10 * * * jd_lottery.js, tag=joy抽奖机通用, enabled=true
+corn 1 1 1 1 1 jd_lottery.js, tag=joy抽奖机通用, enabled=true
 
 //变量：export JD_Lottery="id" 多个使用  @  连接
  */
