@@ -7,17 +7,12 @@ const $ = new Env('穿行寻宝-膨胀');
 
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 
-$.inviteId1 = process.env.cxxb_pz || inviteId1 // token
-if(!$.inviteId1){
-  console.log('请填写 cxxb_pz 助力码')
-  return
-}
 
 let cookiesArr = [], cookie = '', message;
 let secretp='',inviteId=[]
 let helpnum=3;
 //助力码
-let inviteId1='PKASTT020-akNGWN-rzWXUUCj3apNCTdXn4aRzTQjeQOc';
+//let inviteId1='PKASTT020-akNGWN-rzWXUUCj3apNCTdXn4aRzTQjeQOc';
 
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
@@ -29,6 +24,11 @@ if ($.isNode()) {
 }
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
 
+$.inviteId1 = process.env.cxxb_pz || inviteId1 // token
+if(!$.inviteId1){
+  console.log('请填写 cxxb_pz 助力码')
+  return
+}
 $.inviteId  = [];
 $.inviteId.push(inviteId1);
 !(async () => {
