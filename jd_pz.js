@@ -3,7 +3,7 @@
 cron:1 1 1 1 1
 
 */
-const $ = new Env('热爱膨胀');
+const $ = new Env('穿行寻宝-膨胀');
 
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 
@@ -12,7 +12,7 @@ let cookiesArr = [], cookie = '', message;
 let secretp='',inviteId=[]
 let helpnum=3;
 //助力码
-let inviteId1='';
+let inviteId1='PKASTT020-akNGWN-rzWXUUCj3apNCTdXn4aRzTQjeQOc';
 
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
