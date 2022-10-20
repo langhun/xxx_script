@@ -13,7 +13,7 @@ let secretp='',inviteId=[]
 let helpnum=3;
 //助力码
 //let inviteId1='PKASTT020-akNGWN-rzWXUUCj3apNCTdXn4aRzTQjeQOc';
-
+inviteId1 = $.isNode() ? (process.env.cxxb_pz ? process.env.cxxb_pz : `${inviteId1}`) : ($.getdata('cxxb_pz') ? $.getdata('cxxb_pz') : `${inviteId1}`);
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
     cookiesArr.push(jdCookieNode[item])
@@ -24,7 +24,7 @@ if ($.isNode()) {
 }
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
 
-$.inviteId1 = process.env.cxxb_pz || inviteId1 // token
+//$.inviteId1 = process.env.cxxb_pz || inviteId1 // token
 if(!$.inviteId1){
   console.log('请填写 cxxb_pz 助力码')
   return
