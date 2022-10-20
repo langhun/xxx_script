@@ -22,7 +22,7 @@ if ($.isNode()) {
   cookiesArr = [$.getdata('CookieJD'), $.getdata('CookieJD2'), ...jsonParse($.getdata('CookiesJD') || "[]").map(item => item.cookie)].filter(item => !!item);
 }
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
-inviteId1 = $.isNode() ? (process.env.cxxb_pz ? process.env.cxxb_pz : `${inviteId1}`) : ($.getdata('cxxb_pz') ? $.getdata('cxxb_pz') : `${inviteId1}`);
+rebateCodes = $.isNode() ? (process.env.gua_nhjRed_rebateCode ? process.env.gua_nhjRed_rebateCode : `${rebateCodes}`) : ($.getdata('gua_nhjRed_rebateCode') ? $.getdata('gua_nhjRed_rebateCode') : `${rebateCodes}`);
 //$.inviteId1 = process.env.cxxb_pz || inviteId1 // token
 if(!$.inviteId1){
   console.log('请填写 cxxb_pz 助力码')
