@@ -23,11 +23,10 @@ if ($.isNode()) {
 }
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
 inviteId1 = $.isNode() ? (process.env.cxxb_pz ? process.env.cxxb_pz : `${inviteId1}`) : ($.getdata('cxxb_pz') ? $.getdata('cxxb_pz') : `${inviteId1}`);
-//$.inviteId1 = process.env.cxxb_pz || inviteId1 // token
-if(!$.inviteId1){
-  console.log('请填写 cxxb_pz 助力码')
-  return
-}
+//if(!$.inviteId1){
+//  console.log('请填写 cxxb_pz 助力码')
+//  return
+//}
 $.inviteId  = [];
 $.inviteId.push(inviteId1);
 !(async () => {
