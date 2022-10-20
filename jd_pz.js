@@ -7,6 +7,11 @@ const $ = new Env('穿行寻宝-膨胀');
 
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 
+$.inviteId1 = process.env.cxxb_pz || inviteId1 // token
+if(!$.inviteId1){
+  console.log('请填写 cxxb_pz 助力码')
+  return
+}
 
 let cookiesArr = [], cookie = '', message;
 let secretp='',inviteId=[]
