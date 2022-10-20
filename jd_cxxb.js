@@ -1,7 +1,7 @@
 /*
 
 穿行寻宝
-cron:0 11 22 7 * * *
+cron:20 20 20 * * *
 
 */
 const CryptoJS = require("crypto-js");

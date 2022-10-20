@@ -1,7 +1,7 @@
 /*
 
 穿行寻宝-柠檬
-cron:22 22 20 * * *
+cron:7 7 7 * * *
 
 */
 const CryptoJS = require("crypto-js");
