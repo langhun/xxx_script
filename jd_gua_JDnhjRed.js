@@ -49,7 +49,7 @@ resMsg = ''
 $.endFlag = false
 let shareCodeArr = {}
 $.runArr = {}
-const activeEndTime = '2022/11/12 00:00:00+08:00';//活动结束时间
+const activeEndTime = '2022/11/30 00:00:00+08:00';//活动结束时间
 let nowTime = new Date().getTime() + new Date().getTimezoneOffset()*60*1000 + 8*60*60*1000;
 let timeH = $.time('H')
 !(async () => {
@@ -166,7 +166,7 @@ async function run(type = 0){
         break
       }
       await getUrl1()
-      $.actId = $.url2.match(/mall\/active\/([^/]+)\/index\.html/) && $.url2.match(/mall\/active\/([^/]+)\/index\.html/)[1] || `https://prodev.m.jd.com/mall/active/31e6keDr2FdaUEVSvNZM2kjD7QVx/index.html?unionActId=31142&d=${rebateCode}`
+      $.actId = $.url2.match(/mall\/active\/([^/]+)\/index\.html/) && $.url2.match(/mall\/active\/([^/]+)\/index\.html/)[1] || `https://prodev.m.jd.com/mall/active/22Dzqz8Cvk1Cj7BdKE46ZKSVARFE/index.html?unionActId=31149&d=${rebateCode}`
       // let arr = await getBody($.UA,$.url2)
       // await getEid(arr)
       if(!$.eid){
