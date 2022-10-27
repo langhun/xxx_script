@@ -1,7 +1,7 @@
 /*
 双十一红包（年货节修改）
 
-cron:0 0,10,20,22 * * *  
+cron:0 0,8,12,20 * * *  
 
 https://raw.githubusercontent.com/smiek2121/scripts/master/gua_nhjRed.js
 整点跑 红包几率大点
