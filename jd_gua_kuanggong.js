@@ -1,5 +1,5 @@
 /*
-cron 1 1 1 1 1
+cron:1 1 1 1 1
 */
 const $ = new Env("疯狂的矿工⚒️")
 
