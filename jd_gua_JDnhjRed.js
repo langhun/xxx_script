@@ -314,7 +314,7 @@ function showCoupon(shareId = '') {
   let msg = true
   return new Promise(resolve => {
     let opts = {
-      url: `https://api.m.jd.com/api?functionId=showCoupon&appid=u&_=${Date.now()}&loginType=2&body={%22actId%22:%22${$.actId}%22,%22unionActId%22:%2231137%22,%22unpl%22:%22%22,%22platform%22:4,%22unionShareId%22:%22%22,%22uiUpdateTime%22:1641456650000,%22d%22:%22${rebateCode}%22,%22eid%22:%22${$.eid}%22}&client=apple&clientVersion=8.3.6`,
+      url: `https://api.m.jd.com/api?functionId=showCoupon&appid=u&_=${Date.now()}&loginType=2&body={%22actId%22:%22${$.actId}%22,%22unionActId%22:%2231137%22,%22unpl%22:%22%22,%22platform%22:4,%22unionShareId%22:%22%22,%22uiUpdateTime%22:1666260053940,%22d%22:%22${rebateCode}%22,%22eid%22:%22${$.eid}%22}&client=apple&clientVersion=11.2.8`,
       headers: {
         "Accept-Language": "zh-cn",
         "Accept-Encoding": "gzip, deflate, br",
@@ -368,7 +368,7 @@ function shareUnionCoupon() {
   $.shareCodeArr[$.UserName] = ''
   return new Promise(resolve => {
     let opts = {
-      url: `https://api.m.jd.com/api?functionId=shareUnionCoupon&appid=u&_=${Date.now()}&loginType=2&body={%22unionActId%22:%2231137%22,%22actId%22:%22${$.actId}%22,%22platform%22:4,%22unionShareId%22:%22${$.shareCode}%22,%22d%22:%22${rebateCode}%22,%22supportPic%22:2,%22supportLuckyCode%22:0,%22eid%22:%22${$.eid}%22}&client=apple&clientVersion=8.3.6`,
+      url: `https://api.m.jd.com/api?functionId=shareUnionCoupon&appid=u&_=${Date.now()}&loginType=2&body={%22unionActId%22:%2231137%22,%22actId%22:%22${$.actId}%22,%22platform%22:4,%22unionShareId%22:%22${$.shareCode}%22,%22d%22:%22${rebateCode}%22,%22supportPic%22:2,%22supportLuckyCode%22:0,%22eid%22:%22${$.eid}%22}&client=apple&clientVersion=11.2.8`,
       headers: {
         "Accept-Language": "zh-cn",
         "Accept-Encoding": "gzip, deflate, br",
@@ -471,7 +471,7 @@ function setActivityCookie(resp){
 }
 
 function getUA(){
-  $.UA = `jdapp;iPhone;10.2.2;14.3;${randomString(40)};M/5.0;network/wifi;ADID/;model/iPhone12,1;addressid/4199175193;appBuild/167863;jdSupportDarkMode/0;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1;`
+  $.UA = `jdapp;iPhone;11.2.8;14.3;${randomString(40)};M/5.0;network/wifi;ADID/;model/iPhone12,1;addressid/4199175193;appBuild/168328;jdSupportDarkMode/1;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1;`
 }
 function randomString(e) {
   e = e || 32;
