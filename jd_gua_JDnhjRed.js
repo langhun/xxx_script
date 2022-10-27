@@ -3,12 +3,12 @@
 cron 0 0,10,20,22 * * *  https://raw.githubusercontent.com/smiek2121/scripts/master/gua_nhjRed.js
 整点跑 红包几率大点
 
-https://u.jd.com/JtxypHO
+https://u.jd.com/kKFd7h6
 跳转到app 可查看助力情况
 
 返利变量：gua_nhjRed_rebateCode，若需要返利给自己，请自己修改环境变量[gua_nhjRed_rebateCode]
-JtxypHO换成自己的返利
-export gua_nhjRed_rebateCode="JtxypHO"
+kKFd7h6换成自己的返利
+export gua_nhjRed_rebateCode="kKFd7h6"
 
 需要助力[火力值]的账号pin值
 如：【京东账号2】pin
@@ -19,7 +19,7 @@ export gua_nhjRed_rebatePin="pin1,pin2"
 
 */
 
-let rebateCodes = 'JtxypHO'
+let rebateCodes = 'kKFd7h6'
 let rebatePin = ''
 
 const $ = new Env('年货节红包');
@@ -49,7 +49,7 @@ resMsg = ''
 $.endFlag = false
 let shareCodeArr = {}
 $.runArr = {}
-const activeEndTime = '2022/06/18 00:00:00+08:00';//活动结束时间
+const activeEndTime = '2022/11/12 00:00:00+08:00';//活动结束时间
 let nowTime = new Date().getTime() + new Date().getTimezoneOffset()*60*1000 + 8*60*60*1000;
 let timeH = $.time('H')
 !(async () => {
