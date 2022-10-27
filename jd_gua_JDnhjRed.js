@@ -168,7 +168,7 @@ async function run(type = 0){
         break
       }
       await getUrl1()
-      $.actId = $.url2.match(/mall\/active\/([^/]+)\/index\.html/) && $.url2.match(/mall\/active\/([^/]+)\/index\.html/)[1] || `https://prodev.m.jd.com/mall/active/22Dzqz8Cvk1Cj7BdKE46ZKSVARFE/index.html?unionActId=31149&hideyl=1&d=${rebateCode}`
+      $.actId = $.url2.match(/mall\/active\/([^/]+)\/index\.html/) && $.url2.match(/mall\/active\/([^/]+)\/index\.html/)[1] || `https://prodev.m.jd.com/mall/active/22Dzqz8Cvk1Cj7BdKE46ZKSVARFE/index.html?unionActId=31149&d=${rebateCode}`
       // let arr = await getBody($.UA,$.url2)
       // await getEid(arr)
       if(!$.eid){
