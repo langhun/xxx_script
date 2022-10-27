@@ -50,7 +50,9 @@ $.endFlag = false
 let shareCodeArr = {}
 $.runArr = {}
 const activeEndTime = '2022/11/30 00:00:00+08:00';//活动结束时间
+
 let nowTime = new Date().getTime() + new Date().getTimezoneOffset()*60*1000 + 8*60*60*1000;
+
 let timeH = $.time('H')
 !(async () => {
   if (!cookiesArr[0]) {
@@ -140,9 +142,9 @@ let timeH = $.time('H')
   }
   if(Object.getOwnPropertyNames($.shareCodeArr).length > 0 && $.shareCodeArr["updateTime"] != pinUpdateTime) $.setdata($.shareCodeArr,'gua_JDnhjRed')
   if(message){
-    $.msg($.name, ``, `${message}\nhttps://u.jd.com/JL9Tx1T\n\n跳转到app 可查看助力情况`);
+    $.msg($.name, ``, `${message}\nhttps://u.jd.com/kKFd7h6\n\n跳转到app 可查看助力情况`);
     if ($.isNode()){
-      // await notify.sendNotify(`${$.name}`, `${message}\n\nhttps://u.jd.com/JL9Tx1T\n跳转到app 可查看助力情况`);
+      // await notify.sendNotify(`${$.name}`, `${message}\n\nhttps://u.jd.com/kKFd7h6\n跳转到app 可查看助力情况`);
     }
   }
 })()
@@ -166,7 +168,7 @@ async function run(type = 0){
         break
       }
       await getUrl1()
-      $.actId = $.url2.match(/mall\/active\/([^/]+)\/index\.html/) && $.url2.match(/mall\/active\/([^/]+)\/index\.html/)[1] || `https://prodev.m.jd.com/mall/active/22Dzqz8Cvk1Cj7BdKE46ZKSVARFE/index.html?unionActId=31149&d=${rebateCode}`
+      $.actId = $.url2.match(/mall\/active\/([^/]+)\/index\.html/) && $.url2.match(/mall\/active\/([^/]+)\/index\.html/)[1] || `https://prodev.m.jd.com/mall/active/22Dzqz8Cvk1Cj7BdKE46ZKSVARFE/index.html?unionActId=31149&hideyl=1&d=${rebateCode}`
       // let arr = await getBody($.UA,$.url2)
       // await getEid(arr)
       if(!$.eid){
