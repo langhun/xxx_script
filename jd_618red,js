@@ -1,6 +1,6 @@
 /*
 618红包
-
+cron:1 1 1 1 1
 变量
 export CODE618=""  
 
@@ -51,8 +51,8 @@ let appId, fingerprint, token, enCryptMethodJD;
     }
 })().catch((e) => { $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '') }).finally(() => { $.done(); })
 
-async function main(ck, code = 'kKFd7h6') {
-    const codes = ['kKFd7h6','kKFd7h6']
+async function main(ck, code = 'xItny5c') {
+    const codes = ['xItny5c','xItny5c']
     code = $.CODE618 ? $.CODE618 : codes[random(0, codes.length)]
     //console.log(code)
     let userName = decodeURIComponent(ck.match(/pt_pin=([^; ]+)(?=;?)/) && ck.match(/pt_pin=([^; ]+)(?=;?)/)[1])
