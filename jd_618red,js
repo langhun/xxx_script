@@ -1,15 +1,13 @@
 /*
-1111红包
+1111红包(618红包修改)
 cron:0 8,12,20 * * *
 变量
 export CODE618=""  
 
 建议禁用，避免其他问题 需要的请填写自己的码子，
 
-随机定时
-
 */
-const $ = new Env('618红包');
+const $ = new Env('1111红包');
 $.CODE618 = $.isNode() ? (process.env.CODE618 ? process.env.CODE618 : '') : '';
 const jdCookieNode = require('./jdCookie.js');
 let cookiesArr = [];
