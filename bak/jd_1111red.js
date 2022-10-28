@@ -22,7 +22,7 @@ cron "0 0 0,12,19,20 * * *" script-path=https://raw.githubusercontent.com/Aaron-
 双十一红包 = type=cron,script-path=https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/jd_618red.js, cronexpr="0 0 0,12,19,20 * * *", timeout=3600, enable=true
  */
 const $ = new Env('双十一红包');
-const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
+const jdCookieNode = $.isNode() ? require('../jdCookie.js') : '';
 let rebateCodes = ''
 let rebatePin = '' //分享码 默认助力前五 如果小于五个号 只助力第一个
 CryptoScripts()
