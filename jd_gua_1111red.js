@@ -17,7 +17,7 @@ export JD_221111Red_rebatePin="pin1,pin2"
 export JD_221111Red_redTimes="0"
 0=不限制(默认) 1=领取1次 2=领取2次
 
-0 10,22 * * * https://raw.githubusercontent.com/smiek2121/scripts/master/gua_221111_Red.js 全民领红包
+cron:0 10,22 * * * https://raw.githubusercontent.com/smiek2121/scripts/master/gua_221111_Red.js 全民领红包
 
 */
 
