@@ -8,7 +8,7 @@
  抓包：开着抓包软件打开小程序，抓包链接里面的memberId https://member.kwwblcj.com/member/api/info/?userKeys=v1.0&pageName=member-info-index-search&formName=searchForm&kwwMember.memberId=xxxx
  变量格式：export kwwUid='xxxx@xxxx2'  多个账号用 @ 或者 换行 分割
  定时：一天一次
- cron: 12 8 * * *
+ cron: 12 12 * * *
 订阅仓库：
 http://nm6.xyz:20080/ningmeng/ningmeng.git
  */
