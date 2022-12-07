@@ -1,14 +1,14 @@
 /**
  作者：shawn&柠檬玩机交流
  微信公众号：柠檬玩机交流
- 日期：2022-11-21
+ 日期：2022-12-6
  软件：口味王小程序
  功能：所有功能
  依赖：依赖需要：@babel/parser  xpath  xmldom  jsdom node-jsencrypt	axios@v0.27.2
  抓包：开着抓包软件打开小程序，抓包链接里面的memberId https://member.kwwblcj.com/member/api/info/?userKeys=v1.0&pageName=member-info-index-search&formName=searchForm&kwwMember.memberId=xxxx
  变量格式：export kwwUid='xxxx@xxxx2'  多个账号用 @ 或者 换行 分割
  定时：一天一次
- cron: 12 12 * * *
+ cron: 12 8 * * *
 订阅仓库：
 http://nm6.xyz:20080/ningmeng/ningmeng.git
  */
@@ -125,48 +125,48 @@ log('\n 微信公众号：柠檬玩机交流')
                 taskBeforeScore = 0;
                 await getBaseInfo();
                  log(`\n==== 每日签到 ====\n`)
-                 await getSignInfo(2 * 1000);
-                 await $.wait(2000);
-                 await dbInterface(2 * 1000);
+                 await getSignInfo(1 * 1000);
+                 //await $.wait(2000);
+                 await dbInterface(1 * 1000);
                  
-                 await $.wait(2000);
+                 //await $.wait(2000);
                  if (isSign) {
                      log(`账号【${num}】已经签到了`)
                  } else {
                      await signIn();
-                     await $.wait(2000);
+                     //await $.wait(2000);
                  }
                  log(`\n==== 点击青果====\n`)
-                 await activeTaskFlag(2 * 1000)
+                 await activeTaskFlag(1 * 1000)
                  log(`\n==== 每日阅读 ====\n`)
                  await readInfo();
-                 await $.wait(2000);
+                 //await $.wait(2000);
                  if (isArticleReadFlag) {
                      log(`账号【${num}】已经阅读了`)
                  } else {
                      await readSubmit();
-                     await $.wait(2000);
+                     //await $.wait(2000);
                  }
                  log(`\n==== 竞猜足球 ====\n`);
                  await finishJc(num)
                  log(`\n==== 每日答题 ====\n`);
                  await finishDt(num);
-                 await $.wait(3000)
+                 //await $.wait(3000)
                  log(`\n==== 疯狂摇奖机 ====\n`)
                  await finishYjj(num);
-                 await $.wait(3000)
+                 //await $.wait(3000)
                 log(`\n==== 海岛游乐场 ====\n`)
                 await finishHd(num);
-                await $.wait(3000)
+                //await $.wait(3000)
                  log(`\n==== 天降好礼 ====\n`)
                  await finishTj(num);
-                 await $.wait(3000)
+                 //await $.wait(3000)
                  log(`\n==== 青果园 ====\n`);
                  await finishQgy(num);
-                 await $.wait(3000)
+                 //await $.wait(3000)
                  log(`\n==== 抢兑红包 ====\n`);
                  await finishQhd(num);
-                 await $.wait(3000)
+                 //await $.wait(3000)
                  log(`\n==== 积分查询 ====\n`)
                  await getMemberScore();
                 // await $.wait(2000);
@@ -213,13 +213,16 @@ async function getBaseInfo() {
  * @returns {Promise<unknown>}
  */
 async function getMemberInfo(timeout = 2000) {
+    ran = _0x13ceea
+    ts = _0x3a4ed2
     let options = {
         url: `https://member.kwwblcj.com/member/api/info/?userKeys=${userKeys}&pageName=member-info-index-search&formName=${formName}&kwwMember.memberId=${kwwUid}&kwwMember.unionid=${memberUnionid}&memberId=${kwwUid}`,
         headers: {
-            Host: 'member.kwwblcj.com',
+            Host: 'member.kwwblcj.com','user-sign': _0x28ba8f(new Date()["getTime"](),_0x13ceea),'user-timestamp': new Date()["getTime"](),'user-random': _0x13ceea,
             Connection: 'keep-alive',
             'content-type': 'application/json',
             'User-Agent': userAgent,
+
             Referer: 'https://servicewechat.com/wxfb0905b0787971ad/33/page-frame.html'
         },
     };
@@ -259,6 +262,8 @@ async function getMemberInfo(timeout = 2000) {
  */
 async function getMemberScore() {
     return new Promise((resolve) => {
+            ran = _0x13ceea
+    ts = _0x3a4ed2
         var options = {
             method: 'GET',
             url: 'https://member.kwwblcj.com/member/api/list/',
@@ -269,7 +274,7 @@ async function getMemberScore() {
                 memberId: kwwUid
             },
             headers: {
-                Host: 'member.kwwblcj.com',
+                Host: 'member.kwwblcj.com','user-sign': _0x28ba8f(new Date()["getTime"](),_0x13ceea),'user-timestamp': new Date()["getTime"](),'user-random': _0x13ceea,
                 Connection: 'keep-alive',
                 'content-type': 'application/json',
                 'User-Agent': userAgent,
@@ -317,6 +322,8 @@ async function getMemberScore() {
  */
 async function getQgyUrl() {
     return new Promise((resolve) => {
+            ran = _0x13ceea
+    ts = _0x3a4ed2
         var options = {
             method: 'GET',
             url: 'https://cms.kwwblcj.com/data/c00.json',
@@ -368,6 +375,8 @@ async function getQgyUrl() {
  */
 async function getMrYdUrl() {
     return new Promise((resolve) => {
+            ran = _0x13ceea
+    ts = _0x3a4ed2
         var options = {
             method: 'GET',
             url: 'https://cms.kwwblcj.com/data/c02.json',
@@ -418,6 +427,8 @@ async function getMrYdUrl() {
  */
 async function getOtherUrl() {
     return new Promise((resolve) => {
+            ran = _0x13ceea
+    ts = _0x3a4ed2
         var options = {
             method: 'GET',
             url: 'https://cms.kwwblcj.com/data/c05.json',
@@ -477,6 +488,8 @@ async function getOtherUrl() {
  */
 async function getQhbUrl() {
     return new Promise((resolve) => {
+            ran = _0x13ceea
+    ts = _0x3a4ed2
         var options = {
             method: 'GET',
             url: 'https://cms.kwwblcj.com/data/gdbanner.json',
@@ -527,6 +540,8 @@ async function getQhbUrl() {
  */
 async function xxsBanner() {
     return new Promise((resolve) => {
+            ran = _0x13ceea
+    ts = _0x3a4ed2
         var options = {
             method: 'GET',
             url: 'https://cms.kwwblcj.com/data/xxsbanner2.json',
@@ -580,6 +595,8 @@ async function getAnswerLists() {
  */
 async function selectTaskList() {
     return new Promise((resolve) => {
+            ran = _0x13ceea
+    ts = _0x3a4ed2
         var options = {
             method: 'GET',
             url: 'https://member.kwwblcj.com/member/api/list/',
@@ -590,7 +607,7 @@ async function selectTaskList() {
                 memberId: kwwUid
             },
             headers: {
-                Host: 'member.kwwblcj.com',
+                Host: 'member.kwwblcj.com','user-sign': _0x28ba8f(new Date()["getTime"](),_0x13ceea),'user-timestamp': new Date()["getTime"](),'user-random': _0x13ceea,
                 Connection: 'keep-alive',
                 'content-type': 'application/json',
                 'User-Agent': userAgent,
@@ -641,12 +658,14 @@ async function selectTaskList() {
  * @returns {Promise<unknown>}
  */
 async function getSignInfo(timeout = 2000) {
+        ran = _0x13ceea
+    ts = _0x3a4ed2
     signCateId = '';
     isSign = false;
     let options = {
         url: `https://member.kwwblcj.com/member/api/list/?userKeys=${userKeys}&pageName=selectSignInfo&formName=searchForm&memberId=${kwwUid}`,
         headers: {
-            Host: 'member.kwwblcj.com',
+            Host: 'member.kwwblcj.com','user-sign': _0x28ba8f(new Date()["getTime"](),_0x13ceea),'user-timestamp': new Date()["getTime"](),'user-random': _0x13ceea,
             Connection: 'keep-alive',
             'content-type': 'application/json',
             'User-Agent': userAgent,
@@ -697,10 +716,12 @@ async function getSignInfo(timeout = 2000) {
     })
 }
 async function activeTaskFlag(timeout = 2000) {
+        ran = _0x13ceea
+    ts = _0x3a4ed2
     let options = {
         url: `https://member.kwwblcj.com/member/api/list/?userKeys=${userKeys}&pageName=activeTaskFlag&formName=editForm&memberId=${kwwUid}&userCname=%7F%7F`,
         headers: {
-            Host: 'member.kwwblcj.com',
+            Host: 'member.kwwblcj.com','user-sign': _0x28ba8f(new Date()["getTime"](),_0x13ceea),'user-timestamp': new Date()["getTime"](),'user-random': _0x13ceea,
             Connection: 'keep-alive',
             'content-type': 'application/json',
             'User-Agent': userAgent,
@@ -740,10 +761,12 @@ async function activeTaskFlag(timeout = 2000) {
  * @returns {Promise<unknown>}
  */
 async function dbInterface(timeout = 2000) {
+        ran = _0x13ceea
+    ts = _0x3a4ed2
     let options = {
-        url: `https://member.kwwblcj.com/member/api/info/?userKeys=${userKeys}&pageName=dbInterface&formName=treeStatus&uid=${kwwUid}`,
+        url: `https://member.kwwblcj.com/member/api/info/?userKeys=${userKeys}&pageName=dbInterface&formName=treeStatus&uid=${kwwUid}&memberId=${kwwUid}`,
         headers: {
-            Host: 'member.kwwblcj.com',
+            Host: 'member.kwwblcj.com','user-sign': _0x28ba8f(new Date()["getTime"](),_0x13ceea),'user-timestamp': new Date()["getTime"](),'user-random': _0x13ceea,
             Connection: 'keep-alive',
             'content-type': 'application/json',
             'User-Agent': userAgent,
@@ -784,12 +807,14 @@ async function dbInterface(timeout = 2000) {
  */
 async function signIn() {
     return new Promise((resolve) => {
+            ran = _0x13ceea
+    ts = _0x3a4ed2
         var options = {
             method: 'POST',
             url: 'https://member.kwwblcj.com/member/api/submit/',
             params: {userKeys: userKeys},
             headers: {
-                Host: 'member.kwwblcj.com',
+                Host: 'member.kwwblcj.com','user-sign': _0x28ba8f(new Date()["getTime"](),_0x13ceea),'user-timestamp': new Date()["getTime"](),'user-random': _0x13ceea,
                 Connection: 'keep-alive',
                 'content-type': 'application/json',
                 'User-Agent': userAgent,
@@ -835,7 +860,8 @@ async function signIn() {
  */
 async function readInfo() {
     return new Promise((resolve) => {
-
+    ran = _0x13ceea
+    ts = _0x3a4ed2
         var options = {
             method: 'GET',
             url: 'https://qrcode.kwwblcj.com/qrc/api/info/' + memberUnionid + '/',
@@ -882,6 +908,8 @@ async function readInfo() {
  * @returns {Promise<unknown>}
  */
 async function readSubmit() {
+        ran = _0x13ceea
+    ts = _0x3a4ed2
     var max = articleReadList.length - 1;
     var articleTitle = articleReadList[randomInt(0, max)]['title'];
     return new Promise((resolve) => {
@@ -897,7 +925,7 @@ async function readSubmit() {
                 articleTitle: articleTitle
             },
             headers: {
-                Host: 'member.kwwblcj.com',
+                Host: 'member.kwwblcj.com','user-sign': _0x28ba8f(new Date()["getTime"](),_0x13ceea),'user-timestamp': new Date()["getTime"](),'user-random': _0x13ceea,
                 Connection: 'keep-alive',
                 'User-Agent': userAgent,
                 'content-type': 'application/json',
@@ -941,29 +969,32 @@ async function readSubmit() {
  */
 async function loginFreePlugin(redirect) {
     return new Promise((resolve) => {
+            ran = _0x13ceea
+    ts = _0x3a4ed2
         var options = {
             method: 'GET',
-            url: 'https://member.kwwblcj.com/member/api/info/',
-            params: {
-                userKeys: userKeys,
-                pageName: 'loginFreePlugin',
-                formName: 'searchForm',
-                uid: kwwUid,
-                levelCode: '1',
-                redirect: redirect
-            },
+            url: 'https://member.kwwblcj.com/member/api/info/?userKeys=v1.0&pageName=loginFreePlugin&formName=searchForm&uid='+kwwUid+'&levelCode=1&redirect=https%3A%2F%2F89420.activity-20.m.duiba.com.cn%2Fprojectx%2Fp725daef0%2Findex.html%3FappID%3D89420&actionType=grabARedEnvelopeIndex&actionDesc=%E7%82%B9%E5%87%BB%E9%A6%96%E9%A1%B5%E6%8A%A2%E7%BA%A2%E5%8C%85%E6%8C%89%E9%92%AE&objId=mainIndex&memberId='+kwwUid,
+
+
             headers: {
-                Host: 'member.kwwblcj.com',
+                Host: 'member.kwwblcj.com','user-sign': _0x28ba8f(new Date()["getTime"](),_0x13ceea),'user-timestamp': new Date()["getTime"](),'user-random': _0x13ceea,
                 Connection: 'keep-alive',
                 'content-type': 'application/json',
                 'User-Agent': userAgent,
                 Referer: 'https://servicewechat.com/wxfb0905b0787971ad/33/page-frame.html'
             }
         };
-
+        if (debug) {
+            log(`\n【debug】=============== 这是 登录 请求 url ===============`);
+            log(JSON.stringify(options));
+        }
         axios.request(options).then(function (response) {
             try {
                 var data = response.data;
+                                if (debug) {
+                    log(`\n\n【debug】===============这是 登录 返回data==============`);
+                    log(data)
+                }
                 if (data.hasOwnProperty('flag') && data.flag == 'T') {
                     loginUrl = data.result;
                     log(`登录成功，${data.msg}`)
@@ -989,6 +1020,8 @@ async function loginFreePlugin(redirect) {
  */
 async function setCookies() {
     return new Promise((resolve) => {
+            ran = _0x13ceea
+    ts = _0x3a4ed2
         var host = (loginUrl.split('//')[1]).split('/')[0];
         try {
             request(
@@ -1007,6 +1040,7 @@ async function setCookies() {
                         "Sec-Fetch-Dest": "document",
                         "Accept-Encoding": "gzip, deflate, br",
                         "Accept-Language": "en-us,en",
+                        'user-sign': _0x28ba8f(new Date()["getTime"](),_0x13ceea),'user-timestamp': new Date()["getTime"](),'user-random': _0x13ceea,
                     },
                 }, function (err, res, body) {
                     gameCookie = res.request.headers.cookie;
@@ -1027,7 +1061,7 @@ async function setCookies() {
  * @returns {Promise<boolean>}
  */
 async function finishYjj(num) {
-    await loginFreePlugin(yjjUrl);
+    await loginFreePlugin();
     await $.wait(3000)
     if (loginUrl == "") {
         log(`账号【${num}】登录异常，自动跳过疯狂摇奖机任务！`);
@@ -1365,7 +1399,7 @@ async function getYjjOrderStatus(baseUrl) {
  * @returns {Promise<boolean>}
  */
 async function finishHd(num) {
-    await loginFreePlugin(hdUrl);
+    await loginFreePlugin();
     await $.wait(3000)
     if (loginUrl == "") {
         log(`账号【${num}】登录异常，自动跳过海岛游乐场任务！`);
@@ -1919,7 +1953,7 @@ async function hdDraw(baseUrl, opId,hdStartId,hdRoundIndex) {
  * @returns {Promise<boolean>}
  */
 async function finishTj(num) {
-    await loginFreePlugin(tjUrl);
+    await loginFreePlugin();
     await $.wait(3000)
     if (loginUrl == "") {
         log(`账号【${num}】登录异常，自动跳过天降好礼任务！`);
@@ -2241,7 +2275,7 @@ async function tjOrderStatus(baseUrl) {
  * @returns {Promise<boolean>}
  */
 async function finishQgy(num) {
-    await loginFreePlugin(qgyUrl);
+    await loginFreePlugin();
     await $.wait(3000)
     if (loginUrl == "") {
         log(`账号【${num}】登录青果园异常，自动跳过任务！`);
@@ -3030,7 +3064,7 @@ async function startTravel(baseUrl, token) {
  * @returns {Promise<boolean>}
  */
 async function finishQhd(num) {
-    await loginFreePlugin(qhbUrl);
+    await loginFreePlugin();
     await $.wait(3000)
     if (loginUrl == "") {
         log(`账号【${num}】登录抢红包异常，自动跳过任务！`);
@@ -3746,7 +3780,7 @@ async function qhbCode(baseUrl, token) {
  * @returns {Promise<boolean>}
  */
 async function finishDt(num) {
-    await loginFreePlugin(mrDtUrl);
+    await loginFreePlugin();
     await $.wait(3000)
     if (loginUrl == "") {
         log(`账号【${num}】登录异常，自动跳过答题！`);
@@ -4511,7 +4545,7 @@ var options = {
 
 }
 async function finishJc(num) {
-    await loginFreePlugin(qhbUrl);
+    await loginFreePlugin();
     await $.wait(3000)
     if (loginUrl == "") {
         log(`账号【${num}】登录竞猜异常，自动跳过任务！`);
@@ -4837,6 +4871,18 @@ function ParseHtmlGame(html) {
  * @param inputString
  * @returns {*}
  */
+const _0x148a6b=["A","Z","B","Y","C","X","D","T","E","S","F","R","G","Q","H","P","I","O","J","N","k","M","L","a","c","d","f","h","k","p","y","n"];var _0x3a4ed2=new Date()["getTime"]();var _0x13ceea=_0x9d1486(0,31);function _0x28ba8f(_0x25abc7,_0x5597d1){let _0x57040c=kwwUid
+return _0xe30f30(_0x25abc7+_0x57040c+_0x148a6b[_0x5597d1]);}
+function _0x9d1486(_0x310398,_0x2261f7){return Math["floor"](Math["random"]()*(_0x310398-_0x2261f7))+_0x2261f7;}
+function _0xe30f30(_0x1cce71){var _0x42dc97,_0x5966d9,_0x56033e,_0x4e4a7c,_0x16d04f,_0x33f7c3,_0x5846c7,_0x7fe3d8,_0x4f5786,_0x157f4d=function(_0x5e69d7){for(var _0x9d3c6c,_0x31b4fd=_0x5e69d7["length"],_0x3fc1b4=_0x31b4fd+8,_0x501fca=16*(1+(_0x3fc1b4-_0x3fc1b4%64)/64),_0x105f15=Array(_0x501fca-1),_0x28cc9e=0,_0x21f261=0;_0x21f261<_0x31b4fd;)_0x28cc9e=_0x21f261%4*8,_0x105f15[_0x9d3c6c=(_0x21f261-_0x21f261%4)/4]=_0x105f15[_0x9d3c6c]|_0x5e69d7["charCodeAt"](_0x21f261)<<_0x28cc9e,_0x21f261++;return _0x28cc9e=_0x21f261%4*8,_0x105f15[_0x9d3c6c=(_0x21f261-_0x21f261%4)/4]=_0x105f15[_0x9d3c6c]|128<<_0x28cc9e,_0x105f15[_0x501fca-2]=_0x31b4fd<<3,_0x105f15[_0x501fca-1]=_0x31b4fd>>>29,_0x105f15;}(_0x1cce71=function(_0x29f958){_0x29f958=_0x29f958["replace"](/\x0d\x0a/g,"\n");for(var _0x3cbf18="",_0x534296=0;_0x534296<_0x29f958["length"];_0x534296++){var _0x3232df=_0x29f958["charCodeAt"](_0x534296);_0x3232df<128?_0x3cbf18+=String["fromCharCode"](_0x3232df):(127<_0x3232df&&_0x3232df<2048?_0x3cbf18+=String["fromCharCode"](_0x3232df>>6|192):(_0x3cbf18+=String["fromCharCode"](_0x3232df>>12|224),_0x3cbf18+=String["fromCharCode"](_0x3232df>>6&63|128)),_0x3cbf18+=String["fromCharCode"](63&_0x3232df|128));}
+return _0x3cbf18;}(_0x1cce71));for(_0x33f7c3=1732584193,_0x5846c7=4023233417,_0x7fe3d8=2562383102,_0x4f5786=271733878,_0x42dc97=0;_0x42dc97<_0x157f4d["length"];_0x42dc97+=16)_0x33f7c3=_0x320052(_0x5966d9=_0x33f7c3,_0x56033e=_0x5846c7,_0x4e4a7c=_0x7fe3d8,_0x16d04f=_0x4f5786,_0x157f4d[_0x42dc97+0],7,3614090360),_0x4f5786=_0x320052(_0x4f5786,_0x33f7c3,_0x5846c7,_0x7fe3d8,_0x157f4d[_0x42dc97+1],12,3905402710),_0x7fe3d8=_0x320052(_0x7fe3d8,_0x4f5786,_0x33f7c3,_0x5846c7,_0x157f4d[_0x42dc97+2],17,606105819),_0x5846c7=_0x320052(_0x5846c7,_0x7fe3d8,_0x4f5786,_0x33f7c3,_0x157f4d[_0x42dc97+3],22,3250441966),_0x33f7c3=_0x320052(_0x33f7c3,_0x5846c7,_0x7fe3d8,_0x4f5786,_0x157f4d[_0x42dc97+4],7,4118548399),_0x4f5786=_0x320052(_0x4f5786,_0x33f7c3,_0x5846c7,_0x7fe3d8,_0x157f4d[_0x42dc97+5],12,1200080426),_0x7fe3d8=_0x320052(_0x7fe3d8,_0x4f5786,_0x33f7c3,_0x5846c7,_0x157f4d[_0x42dc97+6],17,2821735955),_0x5846c7=_0x320052(_0x5846c7,_0x7fe3d8,_0x4f5786,_0x33f7c3,_0x157f4d[_0x42dc97+7],22,4249261313),_0x33f7c3=_0x320052(_0x33f7c3,_0x5846c7,_0x7fe3d8,_0x4f5786,_0x157f4d[_0x42dc97+8],7,1770035416),_0x4f5786=_0x320052(_0x4f5786,_0x33f7c3,_0x5846c7,_0x7fe3d8,_0x157f4d[_0x42dc97+9],12,2336552879),_0x7fe3d8=_0x320052(_0x7fe3d8,_0x4f5786,_0x33f7c3,_0x5846c7,_0x157f4d[_0x42dc97+10],17,4294925233),_0x5846c7=_0x320052(_0x5846c7,_0x7fe3d8,_0x4f5786,_0x33f7c3,_0x157f4d[_0x42dc97+11],22,2304563134),_0x33f7c3=_0x320052(_0x33f7c3,_0x5846c7,_0x7fe3d8,_0x4f5786,_0x157f4d[_0x42dc97+12],7,1804603682),_0x4f5786=_0x320052(_0x4f5786,_0x33f7c3,_0x5846c7,_0x7fe3d8,_0x157f4d[_0x42dc97+13],12,4254626195),_0x7fe3d8=_0x320052(_0x7fe3d8,_0x4f5786,_0x33f7c3,_0x5846c7,_0x157f4d[_0x42dc97+14],17,2792965006),_0x5846c7=_0x320052(_0x5846c7,_0x7fe3d8,_0x4f5786,_0x33f7c3,_0x157f4d[_0x42dc97+15],22,1236535329),_0x33f7c3=_0x5a344a(_0x33f7c3,_0x5846c7,_0x7fe3d8,_0x4f5786,_0x157f4d[_0x42dc97+1],5,4129170786),_0x4f5786=_0x5a344a(_0x4f5786,_0x33f7c3,_0x5846c7,_0x7fe3d8,_0x157f4d[_0x42dc97+6],9,3225465664),_0x7fe3d8=_0x5a344a(_0x7fe3d8,_0x4f5786,_0x33f7c3,_0x5846c7,_0x157f4d[_0x42dc97+11],14,643717713),_0x5846c7=_0x5a344a(_0x5846c7,_0x7fe3d8,_0x4f5786,_0x33f7c3,_0x157f4d[_0x42dc97+0],20,3921069994),_0x33f7c3=_0x5a344a(_0x33f7c3,_0x5846c7,_0x7fe3d8,_0x4f5786,_0x157f4d[_0x42dc97+5],5,3593408605),_0x4f5786=_0x5a344a(_0x4f5786,_0x33f7c3,_0x5846c7,_0x7fe3d8,_0x157f4d[_0x42dc97+10],9,38016083),_0x7fe3d8=_0x5a344a(_0x7fe3d8,_0x4f5786,_0x33f7c3,_0x5846c7,_0x157f4d[_0x42dc97+15],14,3634488961),_0x5846c7=_0x5a344a(_0x5846c7,_0x7fe3d8,_0x4f5786,_0x33f7c3,_0x157f4d[_0x42dc97+4],20,3889429448),_0x33f7c3=_0x5a344a(_0x33f7c3,_0x5846c7,_0x7fe3d8,_0x4f5786,_0x157f4d[_0x42dc97+9],5,568446438),_0x4f5786=_0x5a344a(_0x4f5786,_0x33f7c3,_0x5846c7,_0x7fe3d8,_0x157f4d[_0x42dc97+14],9,3275163606),_0x7fe3d8=_0x5a344a(_0x7fe3d8,_0x4f5786,_0x33f7c3,_0x5846c7,_0x157f4d[_0x42dc97+3],14,4107603335),_0x5846c7=_0x5a344a(_0x5846c7,_0x7fe3d8,_0x4f5786,_0x33f7c3,_0x157f4d[_0x42dc97+8],20,1163531501),_0x33f7c3=_0x5a344a(_0x33f7c3,_0x5846c7,_0x7fe3d8,_0x4f5786,_0x157f4d[_0x42dc97+13],5,2850285829),_0x4f5786=_0x5a344a(_0x4f5786,_0x33f7c3,_0x5846c7,_0x7fe3d8,_0x157f4d[_0x42dc97+2],9,4243563512),_0x7fe3d8=_0x5a344a(_0x7fe3d8,_0x4f5786,_0x33f7c3,_0x5846c7,_0x157f4d[_0x42dc97+7],14,1735328473),_0x5846c7=_0x5a344a(_0x5846c7,_0x7fe3d8,_0x4f5786,_0x33f7c3,_0x157f4d[_0x42dc97+12],20,2368359562),_0x33f7c3=_0x3bad22(_0x33f7c3,_0x5846c7,_0x7fe3d8,_0x4f5786,_0x157f4d[_0x42dc97+5],4,4294588738),_0x4f5786=_0x3bad22(_0x4f5786,_0x33f7c3,_0x5846c7,_0x7fe3d8,_0x157f4d[_0x42dc97+8],11,2272392833),_0x7fe3d8=_0x3bad22(_0x7fe3d8,_0x4f5786,_0x33f7c3,_0x5846c7,_0x157f4d[_0x42dc97+11],16,1839030562),_0x5846c7=_0x3bad22(_0x5846c7,_0x7fe3d8,_0x4f5786,_0x33f7c3,_0x157f4d[_0x42dc97+14],23,4259657740),_0x33f7c3=_0x3bad22(_0x33f7c3,_0x5846c7,_0x7fe3d8,_0x4f5786,_0x157f4d[_0x42dc97+1],4,2763975236),_0x4f5786=_0x3bad22(_0x4f5786,_0x33f7c3,_0x5846c7,_0x7fe3d8,_0x157f4d[_0x42dc97+4],11,1272893353),_0x7fe3d8=_0x3bad22(_0x7fe3d8,_0x4f5786,_0x33f7c3,_0x5846c7,_0x157f4d[_0x42dc97+7],16,4139469664),_0x5846c7=_0x3bad22(_0x5846c7,_0x7fe3d8,_0x4f5786,_0x33f7c3,_0x157f4d[_0x42dc97+10],23,3200236656),_0x33f7c3=_0x3bad22(_0x33f7c3,_0x5846c7,_0x7fe3d8,_0x4f5786,_0x157f4d[_0x42dc97+13],4,681279174),_0x4f5786=_0x3bad22(_0x4f5786,_0x33f7c3,_0x5846c7,_0x7fe3d8,_0x157f4d[_0x42dc97+0],11,3936430074),_0x7fe3d8=_0x3bad22(_0x7fe3d8,_0x4f5786,_0x33f7c3,_0x5846c7,_0x157f4d[_0x42dc97+3],16,3572445317),_0x5846c7=_0x3bad22(_0x5846c7,_0x7fe3d8,_0x4f5786,_0x33f7c3,_0x157f4d[_0x42dc97+6],23,76029189),_0x33f7c3=_0x3bad22(_0x33f7c3,_0x5846c7,_0x7fe3d8,_0x4f5786,_0x157f4d[_0x42dc97+9],4,3654602809),_0x4f5786=_0x3bad22(_0x4f5786,_0x33f7c3,_0x5846c7,_0x7fe3d8,_0x157f4d[_0x42dc97+12],11,3873151461),_0x7fe3d8=_0x3bad22(_0x7fe3d8,_0x4f5786,_0x33f7c3,_0x5846c7,_0x157f4d[_0x42dc97+15],16,530742520),_0x5846c7=_0x3bad22(_0x5846c7,_0x7fe3d8,_0x4f5786,_0x33f7c3,_0x157f4d[_0x42dc97+2],23,3299628645),_0x33f7c3=_0x5d6320(_0x33f7c3,_0x5846c7,_0x7fe3d8,_0x4f5786,_0x157f4d[_0x42dc97+0],6,4096336452),_0x4f5786=_0x5d6320(_0x4f5786,_0x33f7c3,_0x5846c7,_0x7fe3d8,_0x157f4d[_0x42dc97+7],10,1126891415),_0x7fe3d8=_0x5d6320(_0x7fe3d8,_0x4f5786,_0x33f7c3,_0x5846c7,_0x157f4d[_0x42dc97+14],15,2878612391),_0x5846c7=_0x5d6320(_0x5846c7,_0x7fe3d8,_0x4f5786,_0x33f7c3,_0x157f4d[_0x42dc97+5],21,4237533241),_0x33f7c3=_0x5d6320(_0x33f7c3,_0x5846c7,_0x7fe3d8,_0x4f5786,_0x157f4d[_0x42dc97+12],6,1700485571),_0x4f5786=_0x5d6320(_0x4f5786,_0x33f7c3,_0x5846c7,_0x7fe3d8,_0x157f4d[_0x42dc97+3],10,2399980690),_0x7fe3d8=_0x5d6320(_0x7fe3d8,_0x4f5786,_0x33f7c3,_0x5846c7,_0x157f4d[_0x42dc97+10],15,4293915773),_0x5846c7=_0x5d6320(_0x5846c7,_0x7fe3d8,_0x4f5786,_0x33f7c3,_0x157f4d[_0x42dc97+1],21,2240044497),_0x33f7c3=_0x5d6320(_0x33f7c3,_0x5846c7,_0x7fe3d8,_0x4f5786,_0x157f4d[_0x42dc97+8],6,1873313359),_0x4f5786=_0x5d6320(_0x4f5786,_0x33f7c3,_0x5846c7,_0x7fe3d8,_0x157f4d[_0x42dc97+15],10,4264355552),_0x7fe3d8=_0x5d6320(_0x7fe3d8,_0x4f5786,_0x33f7c3,_0x5846c7,_0x157f4d[_0x42dc97+6],15,2734768916),_0x5846c7=_0x5d6320(_0x5846c7,_0x7fe3d8,_0x4f5786,_0x33f7c3,_0x157f4d[_0x42dc97+13],21,1309151649),_0x33f7c3=_0x5d6320(_0x33f7c3,_0x5846c7,_0x7fe3d8,_0x4f5786,_0x157f4d[_0x42dc97+4],6,4149444226),_0x4f5786=_0x5d6320(_0x4f5786,_0x33f7c3,_0x5846c7,_0x7fe3d8,_0x157f4d[_0x42dc97+11],10,3174756917),_0x7fe3d8=_0x5d6320(_0x7fe3d8,_0x4f5786,_0x33f7c3,_0x5846c7,_0x157f4d[_0x42dc97+2],15,718787259),_0x5846c7=_0x5d6320(_0x5846c7,_0x7fe3d8,_0x4f5786,_0x33f7c3,_0x157f4d[_0x42dc97+9],21,3951481745),_0x33f7c3=_0x3d2bbe(_0x33f7c3,_0x5966d9),_0x5846c7=_0x3d2bbe(_0x5846c7,_0x56033e),_0x7fe3d8=_0x3d2bbe(_0x7fe3d8,_0x4e4a7c),_0x4f5786=_0x3d2bbe(_0x4f5786,_0x16d04f);return(_0x4fdd44(_0x33f7c3)+_0x4fdd44(_0x5846c7)+_0x4fdd44(_0x7fe3d8)+_0x4fdd44(_0x4f5786))["toLowerCase"]();}
+function _0x320052(_0x53a74a,_0x1f0232,_0x3319e4,_0x4868da,_0x4f2046,_0x16c9b4,_0x275807){return _0x53a74a=_0x3d2bbe(_0x53a74a,_0x3d2bbe(_0x3d2bbe(function(_0x338b8c,_0x35acb8,_0x3416d3){return _0x338b8c&_0x35acb8|~_0x338b8c&_0x3416d3;}(_0x1f0232,_0x3319e4,_0x4868da),_0x4f2046),_0x275807)),_0x3d2bbe(_0x400a68(_0x53a74a,_0x16c9b4),_0x1f0232);}
+function _0x3d2bbe(_0x187f25,_0x180ae9){var _0x2d6f11,_0x34f3bb,_0x4d883a,_0x5be6d7,_0x26f225;return _0x4d883a=2147483648&_0x187f25,_0x5be6d7=2147483648&_0x180ae9,_0x26f225=(1073741823&_0x187f25)+(1073741823&_0x180ae9),(_0x2d6f11=1073741824&_0x187f25)&(_0x34f3bb=1073741824&_0x180ae9)?2147483648^_0x26f225^_0x4d883a^_0x5be6d7:_0x2d6f11|_0x34f3bb?1073741824&_0x26f225?3221225472^_0x26f225^_0x4d883a^_0x5be6d7:1073741824^_0x26f225^_0x4d883a^_0x5be6d7:_0x26f225^_0x4d883a^_0x5be6d7;}
+function _0x400a68(_0x3f9b83,_0x6c8784){return _0x3f9b83<<_0x6c8784|_0x3f9b83>>>32-_0x6c8784;}
+function _0x5a344a(_0x1fad0f,_0x2a7dc7,_0x5ccbea,_0x1302f6,_0x3a06a1,_0x7582b2,_0x2197b6){return _0x1fad0f=_0x3d2bbe(_0x1fad0f,_0x3d2bbe(_0x3d2bbe(function(_0x20883c,_0x4653fb,_0x1417ba){return _0x20883c&_0x1417ba|_0x4653fb&~_0x1417ba;}(_0x2a7dc7,_0x5ccbea,_0x1302f6),_0x3a06a1),_0x2197b6)),_0x3d2bbe(_0x400a68(_0x1fad0f,_0x7582b2),_0x2a7dc7);}
+function _0x3bad22(_0x3d8e12,_0x40a9ff,_0x40d088,_0x16fc31,_0x14f594,_0x546958,_0x4b65bd){return _0x3d8e12=_0x3d2bbe(_0x3d8e12,_0x3d2bbe(_0x3d2bbe(function(_0x1261a5,_0x1ea76f,_0x32c5f8){return _0x1261a5^_0x1ea76f^_0x32c5f8;}(_0x40a9ff,_0x40d088,_0x16fc31),_0x14f594),_0x4b65bd)),_0x3d2bbe(_0x400a68(_0x3d8e12,_0x546958),_0x40a9ff);}
+function _0x5d6320(_0x37b598,_0x4fa8b5,_0xbe55c6,_0x45fe28,_0x3dde65,_0x4b4839,_0x2d143b){return _0x37b598=_0x3d2bbe(_0x37b598,_0x3d2bbe(_0x3d2bbe(function(_0x55c929,_0x103f0,_0x5ee4a6){return _0x103f0^(_0x55c929|~_0x5ee4a6);}(_0x4fa8b5,_0xbe55c6,_0x45fe28),_0x3dde65),_0x2d143b)),_0x3d2bbe(_0x400a68(_0x37b598,_0x4b4839),_0x4fa8b5);}
+function _0x4fdd44(_0x57939f){var _0x495242,_0x30400f="",_0x38ddfc="";for(_0x495242=0;_0x495242<=3;_0x495242++)_0x30400f+=(_0x38ddfc="0"+(_0x57939f>>>8*_0x495242&255)["toString"](16))["substr"](_0x38ddfc["length"]-2,2);return _0x30400f;}
 function md5(inputString) {
     var hc = "0123456789abcdef";
 
