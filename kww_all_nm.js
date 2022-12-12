@@ -1,14 +1,20 @@
 /**
  作者：shawn&柠檬玩机交流
  微信公众号：柠檬玩机交流
- 日期：2022-12-6
+ 日期：2022-12-11
  软件：口味王小程序
  功能：所有功能
  依赖：依赖需要：@babel/parser  xpath  xmldom  jsdom node-jsencrypt	axios@v0.27.2
  抓包：开着抓包软件打开小程序，抓包链接里面的memberId https://member.kwwblcj.com/member/api/info/?userKeys=v1.0&pageName=member-info-index-search&formName=searchForm&kwwMember.memberId=xxxx
  变量格式：export kwwUid='xxxx@xxxx2'  多个账号用 @ 或者 换行 分割
  定时：一天一次
- cron: 12 8 * * *
+ cron: 12 0,22 * * *
+ 
+ 答题配合仓库的PY版答题
+ 第一次使用需要先设置一个变量
+ export KWW_COOKIE='ningmeng666'
+ 一定要这样写入不然CK写入不进去
+ 
 订阅仓库：
 http://nm6.xyz:20080/ningmeng/ningmeng.git
  */
@@ -22,6 +28,7 @@ const parser = require("@babel/parser");
 const fs = require('fs');
 const path = require('path');
 const xpath = require('xpath')
+const os = require('os')
     , XmldomParser = require('xmldom').DOMParser;
 
 const domParser = new XmldomParser({
@@ -33,10 +40,11 @@ request = request.defaults({jar: true});
 const {log} = console;
 const Notify = 1; //0为关闭通知，1为打开通知,默认为1
 const debug = 0; //0为关闭调试，1为打开调试,默认为0
-//////////////////////
+/////////////////////
 let scriptVersion = "高级版";
 let kwwUid = ($.isNode() ? process.env.kwwUid : $.getdata("kwwUid")) || ""
 let kwwUidArr = [];
+let kcwck='';
 let data = '';
 let msg = '';
 let isSign = false;
@@ -119,7 +127,9 @@ log('\n 微信公众号：柠檬玩机交流')
                 addNotifyStr(`\n==== 开始【第 ${num} 个账号】====\n`, true)
 
                 kwwUid = kwwUidArr[index];
-
+_0x28ba8f(new Date()["getTime"](),_0x13ceea)
+new Date()["getTime"]()
+_0x13ceea,
 
                 log(`\n==== 基本信息 ====\n`)
                 taskBeforeScore = 0;
@@ -162,7 +172,7 @@ log('\n 微信公众号：柠檬玩机交流')
                  await finishTj(num);
                  //await $.wait(3000)
                  log(`\n==== 青果园 ====\n`);
-                 await finishQgy(num);
+                  await finishQgy(num);
                  //await $.wait(3000)
                  log(`\n==== 抢兑红包 ====\n`);
                  await finishQhd(num);
@@ -170,9 +180,42 @@ log('\n 微信公众号：柠檬玩机交流')
                  log(`\n==== 积分查询 ====\n`)
                  await getMemberScore();
                 // await $.wait(2000);
+                 
+
+                 kcwck += gameCookie+'@'
 
             }
             await SendMsg(msg);
+           
+filepath = path.resolve('../config/config.sh');
+
+            
+      fs.readFile(filepath, 'utf8', (err, res) => {
+
+    if (err) {
+        console.log('读取文件失败', err.message)
+    }
+
+         str1 = res.replace(/KWW_COOKIE=('.+')/g, `KWW_COOKIE='${kcwck}'`);
+
+         fs.writeFileSync(filepath, str1, (err) => {
+        if (err) {
+           console.log('读取文件失败', err.message)
+        }
+         console.log('写入成功!')
+    })
+})
+
+            
+            
+            
+            
+            
+           // filepath = path.resolve('../config/config.sh');     
+            
+           //fs.writeFileSync(filepath,`export KWW_COOKIE=${kcwck}`);     
+                 //log(kcwck)
+                 
         }
     }
 })()
@@ -872,6 +915,7 @@ async function readInfo() {
                 'User-Agent': userAgent,
                 'content-type': 'application/json',
                 Referer: 'https://servicewechat.com/wxfb0905b0787971ad/34/page-frame.html',
+                'user-sign': _0x28ba8f(new Date()["getTime"](),_0x13ceea),'user-timestamp': new Date()["getTime"](),'user-random': _0x13ceea,
             }
         };
         if (debug) {
@@ -921,8 +965,8 @@ async function readSubmit() {
                 pageName: 'setNewsReadTaskFlag',
                 formName: 'addForm',
                 memberId: kwwUid,
-                userCname: userCname,
-                articleTitle: articleTitle
+                userCname: '哈哈哈',
+                articleTitle: '口味王“我要上大学”公益助学行动再度起航！助力600名学子筑梦大学'
             },
             headers: {
                 Host: 'member.kwwblcj.com','user-sign': _0x28ba8f(new Date()["getTime"](),_0x13ceea),'user-timestamp': new Date()["getTime"](),'user-random': _0x13ceea,
@@ -2276,13 +2320,13 @@ async function tjOrderStatus(baseUrl) {
  */
 async function finishQgy(num) {
     await loginFreePlugin();
-    await $.wait(3000)
+    //await $.wait(3000)
     if (loginUrl == "") {
         log(`账号【${num}】登录青果园异常，自动跳过任务！`);
         return false;
     }
     await setCookies();
-    await $.wait(3000);
+   // await $.wait(3000);
     if (gameCookie == "") {
         log(`账号【${num}】cookies异常，自动跳过任务！`);
         return false;
@@ -2290,28 +2334,28 @@ async function finishQgy(num) {
     var urlMatch = qgyUrl.match('([^/]+)/?$');
     var baseUrl = qgyUrl.replace(urlMatch[0], '');
     await getTokenKeyStr(baseUrl);
-    await $.wait(2000);
+    //await $.wait(2000);
     await getQgyInfo(baseUrl);
     await getTokenStr(baseUrl);
-    await $.wait(2000);
+    //await $.wait(2000);
     await qgyCheckQuery(baseUrl);
-    await $.wait(2000);
+    //await $.wait(2000);
     if (qgySignFlag) {
         log(`账号【${num}】青果园已经签到了！`);
     } else {
         try {
             await getTokenStr(baseUrl);
-            await $.wait(2000);
+            //await $.wait(2000);
             qgyToken = dealToken(tokenStr, tokenKeyStr);
-            await $.wait(2000);
+            //await $.wait(2000);
             await qgyCreateItem(baseUrl, qgyToken)
             await delay();
             await getTokenStr(baseUrl);
-            await $.wait(2000);
+            //await $.wait(2000);
             qgyToken = dealToken(tokenStr, tokenKeyStr);
             await qgySign(baseUrl, qgyToken);
             await getTokenStr(baseUrl);
-            await $.wait(2000);
+            //await $.wait(2000);
             qgyToken = dealToken(tokenStr, tokenKeyStr); 
             if(currentStatusHaveMillis == currentStatusNeedMillis){
             await collectCoconut(baseUrl, qgyToken)    
@@ -3076,6 +3120,8 @@ async function finishQhd(num) {
         log(`账号【${num}】cookies异常，自动跳过任务！`);
         return false;
     }
+
+  
     var urlMatch = qhbUrl.match('([^/]+)/?$');
     var baseUrl = qhbUrl.replace(urlMatch[0], '');
     await qhbHistory(baseUrl);
