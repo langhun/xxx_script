@@ -6,7 +6,7 @@ import sendNotify
 import re
 import hashlib
 fileName = '柠檬玩机交流-口臭王'
-env_name = 'kwwUid'
+env_name = 'KWW_COOKIE'
 host = 'https://89420.activity-20.m.duiba.com.cn/projectx/'
 hostUrl = f'{host}p129446ea/answer/'
 answerDict = json.loads(requests.request("GET", 'http://nm6.xyz/tk.json').text)
@@ -200,7 +200,7 @@ def getAnswer(question):
 		return random.randint(1,len(question['data']['answerList']))
 
 def submit(kww, startId, answer):
-	url = hostUrl + f"submit.do?answer={answer}&startId={startId}&user_type=1&is_from_share=1&_t={int(time.time()*1000)}"
+	url = hostUrl + f"submit.do?answer={answer}&startId={startId}&timestamp={int(time.time()*1000)}&sign=hashlib.md5(125879{startId}{int(time.time()*1000)}.encode(encoding='UTF-8')).hexdigest()&user_type=1&is_from_share=1&_t={int(time.time()*1000)}"
 	print(f"----提交答案={answer}")
 	result = req(kww, url)
 	if result != None:
@@ -411,36 +411,36 @@ def main():
 	paramList = getwParam()
 	allmsg(f'共{len(paramList)}个账号\n')
 	for index in range(0, len(paramList)):
-		allmsg(f'\n开始第{index+1}个账号{paramList[index]}')
-		Account(paramList[index])
-		SignIn(paramList[index])
-		print("⏰等待1s,休息一下")
-		time.sleep(1)
-		QingGuo(paramList[index])
-		print("⏰等待1s,休息一下")
-		time.sleep(1)
-		Read(paramList[index])
-		print("⏰等待1s,休息一下")
-		url = getChangeCKUrl(paramList[index])
-		ck = getCookie(url)
+		allmsg(f'\n开始第{index+1}个账号')
+		#Account(paramList[index])
+		#SignIn(paramList[index])
+		#print("⏰等待1s,休息一下")
+		#time.sleep(1)
+		#QingGuo(paramList[index])
+		#print("⏰等待1s,休息一下")
+		#time.sleep(1)
+		#Read(paramList[index])
+		#print("⏰等待1s,休息一下")
+		#url = getChangeCKUrl(paramList[index])
+		ck = paramList[index]
 		
-		for x in range(0,3):
-			key = getkey(ck)
-			hdoder,hdstartid = haidaostart(ck)
-			if hdstartid != None and hdoder != None:        
-				haidaogetOrderStatus(ck,hdstartid,hdoder)
-				haidaostartRound(ck,hdstartid,"1")
-				time.sleep(60)
-				haidaosubmit(ck,"5",hdstartid,"5","1",key)
-				haidaoddrw(ck,hdstartid,"1")
-				haidaostartRound(ck,hdstartid,"2")
-				time.sleep(60)
-				haidaosubmit(ck,"10",hdstartid,"15","2",key)
-				haidaoddrw(ck,hdstartid,"2")
-				haidaostartRound(ck,hdstartid,"3")
-				time.sleep(60)
-				haidaosubmit(ck,"15",hdstartid,"30","3",key)
-				haidaoddrw(ck,hdstartid,"3")        
+		#for x in range(0,3):
+			#key = getkey(paramList[index])
+			#hdoder,hdstartid = haidaostart(ck)
+			#if hdstartid != None and hdoder != None:        
+				#haidaogetOrderStatus(ck,hdstartid,hdoder)
+				#haidaostartRound(ck,hdstartid,"1")
+				#time.sleep(60)
+				#haidaosubmit(ck,"5",hdstartid,"5","1",key)
+				#haidaoddrw(ck,hdstartid,"1")
+				#haidaostartRound(ck,hdstartid,"2")
+				#time.sleep(60)
+				#haidaosubmit(ck,"10",hdstartid,"15","2",key)
+				#haidaoddrw(ck,hdstartid,"2")
+				#haidaostartRound(ck,hdstartid,"3")
+				#time.sleep(60)
+				#haidaosubmit(ck,"15",hdstartid,"30","3",key)
+				#haidaoddrw(ck,hdstartid,"3")        
 		
 		# 参与答题-获取startId
 		startId = start(ck)
