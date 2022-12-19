@@ -1,7 +1,7 @@
 /**
  作者：shawn&柠檬玩机交流
  微信公众号：柠檬玩机交流
- 日期：2022-12-11
+ 日期：2022-12-19
  软件：口味王小程序
  功能：所有功能
  依赖：依赖需要：@babel/parser  xpath  xmldom  jsdom node-jsencrypt	axios@v0.27.2
@@ -40,7 +40,7 @@ request = request.defaults({jar: true});
 const {log} = console;
 const Notify = 1; //0为关闭通知，1为打开通知,默认为1
 const debug = 0; //0为关闭调试，1为打开调试,默认为0
-/////////////////////
+//////////////////////
 let scriptVersion = "高级版";
 let kwwUid = ($.isNode() ? process.env.kwwUid : $.getdata("kwwUid")) || ""
 let kwwUidArr = [];
@@ -157,8 +157,8 @@ _0x13ceea,
                      await readSubmit();
                      //await $.wait(2000);
                  }
-                 log(`\n==== 竞猜足球 ====\n`);
-                 await finishJc(num)
+                // log(`\n==== 竞猜足球 ====\n`);
+                 //await finishJc(num)
                  log(`\n==== 每日答题 ====\n`);
                  await finishDt(num);
                  //await $.wait(3000)
@@ -1013,32 +1013,33 @@ async function readSubmit() {
  */
 async function loginFreePlugin(redirect) {
     return new Promise((resolve) => {
-            ran = _0x13ceea
-    ts = _0x3a4ed2
-        var options = {
-            method: 'GET',
-            url: 'https://member.kwwblcj.com/member/api/info/?userKeys=v1.0&pageName=loginFreePlugin&formName=searchForm&uid='+kwwUid+'&levelCode=1&redirect=https%3A%2F%2F89420.activity-20.m.duiba.com.cn%2Fprojectx%2Fp725daef0%2Findex.html%3FappID%3D89420&actionType=grabARedEnvelopeIndex&actionDesc=%E7%82%B9%E5%87%BB%E9%A6%96%E9%A1%B5%E6%8A%A2%E7%BA%A2%E5%8C%85%E6%8C%89%E9%92%AE&objId=mainIndex&memberId='+kwwUid,
+var options = {
+  method: 'GET',
+  url: 'https://member.kwwblcj.com/member/api/info/?userKeys=v1.0&pageName=loginFreePlugin&formName=searchForm&uid='+kwwUid+'&levelCode=1&redirect='+redirect+'&actionType=&actionDesc='+redirect+'&objId=C05&memberId='+kwwUid,
 
-
-            headers: {
-                Host: 'member.kwwblcj.com','user-sign': _0x28ba8f(new Date()["getTime"](),_0x13ceea),'user-timestamp': new Date()["getTime"](),'user-random': _0x13ceea,
-                Connection: 'keep-alive',
-                'content-type': 'application/json',
-                'User-Agent': userAgent,
-                Referer: 'https://servicewechat.com/wxfb0905b0787971ad/33/page-frame.html'
-            }
-        };
-        if (debug) {
-            log(`\n【debug】=============== 这是 登录 请求 url ===============`);
-            log(JSON.stringify(options));
-        }
+  headers: {
+    Host: 'member.kwwblcj.com',
+    Connection: 'keep-alive',
+    'user-sign': _0x28ba8f(new Date()["getTime"](),_0x13ceea),
+    'user-timestamp': new Date()["getTime"](),
+    'user-random': _0x13ceea,
+    'user-agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36 MicroMessenger/7.0.4.501 NetType/WIFI MiniProgramEnv/Windows WindowsWechat/WMPF',
+    'Content-Type': 'application/json',
+    xweb_xhr: '1',
+    'user-paramname': 'memberId',
+    Accept: '*/*',
+    'Sec-Fetch-Site': 'cross-site',
+    'Sec-Fetch-Mode': 'cors',
+    'Sec-Fetch-Dest': 'empty',
+    Referer: 'https://servicewechat.com/wxfb0905b0787971ad/44/page-frame.html',
+    'Accept-Language': 'en-us,en',
+    'Accept-Encoding': 'gzip, deflate'
+  }
+};
         axios.request(options).then(function (response) {
+
             try {
                 var data = response.data;
-                                if (debug) {
-                    log(`\n\n【debug】===============这是 登录 返回data==============`);
-                    log(data)
-                }
                 if (data.hasOwnProperty('flag') && data.flag == 'T') {
                     loginUrl = data.result;
                     log(`登录成功，${data.msg}`)
@@ -1105,7 +1106,7 @@ async function setCookies() {
  * @returns {Promise<boolean>}
  */
 async function finishYjj(num) {
-    await loginFreePlugin();
+    await loginFreePlugin(yjjUrl);
     await $.wait(3000)
     if (loginUrl == "") {
         log(`账号【${num}】登录异常，自动跳过疯狂摇奖机任务！`);
@@ -1443,7 +1444,7 @@ async function getYjjOrderStatus(baseUrl) {
  * @returns {Promise<boolean>}
  */
 async function finishHd(num) {
-    await loginFreePlugin();
+    await loginFreePlugin(hdUrl);
     await $.wait(3000)
     if (loginUrl == "") {
         log(`账号【${num}】登录异常，自动跳过海岛游乐场任务！`);
@@ -1944,22 +1945,27 @@ async function hdDraw(baseUrl, opId,hdStartId,hdRoundIndex) {
         let url = baseUrl + 'draw';
         let host = (baseUrl.split('//')[1]).split('/')[0];
         var options = {
-            method: 'POST',
-            url: url,
-            params: {__ts__: timestampMs()},
+  method: 'POST',
+  url: 'https://89420.activity-20.m.duiba.com.cn/aaw/underseaGame/draw',
+  params: {__ts__: '1671339422427'},
             headers: {
-                cookie: gameCookie,
-                Host: host,
-                'Content-Type': 'application/x-www-form-urlencoded',
-                Origin: 'https://89420.activity-20.m.duiba.com.cn',
-                Connection: 'keep-alive',
-                Accept: '*/*',
-                'User-Agent': userAgent,
-                'Content-Length': '49',
-                Referer: hdUrl + '&from=login&spm=89420.1.1.1',
-                'Accept-Language': 'zh-CN,zh-Hans;q=0.9'
+    cookie: gameCookie,
+    Host: '89420.activity-20.m.duiba.com.cn',
+    Connection: 'keep-alive',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36 MicroMessenger/7.0.4.501 NetType/WIFI MiniProgramEnv/Windows WindowsWechat/WMPF',
+    'Content-Type': 'application/x-www-form-urlencoded',
+    Accept: '*/*',
+    'Sec-Fetch-Site': 'same-origin',
+    'Sec-Fetch-Mode': 'cors',
+    'Sec-Fetch-Dest': 'empty',
+    Referer: 'https://89420.activity-20.m.duiba.com.cn/projectx/p129446ea/index.html?appID=89420&from=login&spm=89420.1.1.1',
+    'Accept-Language': 'en-us,en',
+    'User-Agent': userAgent,
+    'Accept-Encoding': 'gzip, deflate',
+
+
             },
-            data: {opId: opId, startId: hdStartId, roundIndex: hdRoundIndex}
+            data: 'opId='+opId+'&startId='+hdStartId+'&roundIndex='+hdRoundIndex
         };
         if (debug) {
             log(`\n【debug】=============== 这是 海岛抽奖 请求 url ===============`);
@@ -1997,7 +2003,7 @@ async function hdDraw(baseUrl, opId,hdStartId,hdRoundIndex) {
  * @returns {Promise<boolean>}
  */
 async function finishTj(num) {
-    await loginFreePlugin();
+    await loginFreePlugin(tjUrl);
     await $.wait(3000)
     if (loginUrl == "") {
         log(`账号【${num}】登录异常，自动跳过天降好礼任务！`);
@@ -2319,7 +2325,7 @@ async function tjOrderStatus(baseUrl) {
  * @returns {Promise<boolean>}
  */
 async function finishQgy(num) {
-    await loginFreePlugin();
+    await loginFreePlugin(qgyUrl);
     //await $.wait(3000)
     if (loginUrl == "") {
         log(`账号【${num}】登录青果园异常，自动跳过任务！`);
@@ -3108,7 +3114,7 @@ async function startTravel(baseUrl, token) {
  * @returns {Promise<boolean>}
  */
 async function finishQhd(num) {
-    await loginFreePlugin();
+    await loginFreePlugin(qhbUrl);
     await $.wait(3000)
     if (loginUrl == "") {
         log(`账号【${num}】登录抢红包异常，自动跳过任务！`);
@@ -3826,7 +3832,7 @@ async function qhbCode(baseUrl, token) {
  * @returns {Promise<boolean>}
  */
 async function finishDt(num) {
-    await loginFreePlugin();
+    await loginFreePlugin(mrDtUrl);
     await $.wait(3000)
     if (loginUrl == "") {
         log(`账号【${num}】登录异常，自动跳过答题！`);
@@ -3852,14 +3858,17 @@ async function finishDt(num) {
             return false;
         } else {
             await getQuestion(baseUrl);
+            await dtquery()
             await $.wait(2000);
-            await answerSubmit(baseUrl);
+            await answerSubmit();
             await $.wait(3000);
             for (var i = currQuestions; i <= totalQuestions; i++) {
                 log(`开始第${currQuestions}次答题`);
                 await getQuestion(baseUrl);
+                await dtquery()
                 await $.wait(2000);
-                await answerSubmit(baseUrl);
+                
+                await answerSubmit();
                 await $.wait(3000);
             }
             await complete(baseUrl);
@@ -4048,36 +4057,85 @@ async function getQuestion(baseUrl) {
     })
 
 }
+async function dtquery() {
 
+    return new Promise((resolve) => {
+
+
+var options = {
+  method: 'GET',
+  url: 'https://89420.activity-20.m.duiba.com.cn/projectx/p129446ea/coop_frontVariable.query',
+  params: {user_type: '1', is_from_share: '1', _t: timestampMs()},
+  headers: {
+    Host: '89420.activity-20.m.duiba.com.cn',
+    Connection: 'keep-alive',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36 MicroMessenger/7.0.4.501 NetType/WIFI MiniProgramEnv/Windows WindowsWechat/WMPF',
+    'Content-Type': 'application/x-www-form-urlencoded',
+    Accept: '*/*',
+    'Sec-Fetch-Site': 'same-origin',
+    'Sec-Fetch-Mode': 'cors',
+    'Sec-Fetch-Dest': 'empty',
+    Referer: 'https://89420.activity-20.m.duiba.com.cn/projectx/p129446ea/index.html?appID=89420&from=login&spm=89420.1.1.1',
+    'Accept-Language': 'en-us,en',
+    Cookie: gameCookie,
+    'Accept-Encoding': 'gzip, deflate'
+  }
+};
+        if (debug) {
+            log(`\n【debug】=============== 这是 开始答题 请求 url ===============`);
+            log(JSON.stringify(options));
+        }
+        axios.request(options).then(function (response) {
+            try {
+                var data = response.data;
+                if (debug) {
+                    log(`\n\n【debug】===============这是 开始答题 返回data==============`);
+                    log(data)
+                }
+                if (data.data && data.success) {
+                    salt = data.data.salt
+                    log(`saltID：${salt}`)
+                } else {
+                    log(`开始答题失败，原因：${data.message}`)
+                }
+            } catch (e) {
+                log(`开始答题异常：${data}，原因：${e}`)
+            }
+        }).catch(function (error) {
+            console.error(error);
+        }).then(res => {
+            //这里处理正确返回
+            resolve();
+        });
+    })
+
+}
 /**
  * 答题提交
  * @param baseUrl
  * @returns {Promise<unknown>}
  */
-async function answerSubmit(baseUrl) {
+async function answerSubmit() {
     return new Promise((resolve) => {
-        var url = baseUrl + 'answer/submit.do';
-        var host = (url.split('//')[1]).split('/')[0];
+
 
         var options = {
             method: 'GET',
-            url: url,
-            params: {
-                answer: answerType,
-                startId: answerStartId,
-                user_type: '1',
-                is_from_share: '1',
-                _t: timestampMs()
-            },
+            url: 'https://89420.activity-20.m.duiba.com.cn/projectx/p129446ea/answer/submit.do?answer='+answerType+'&startId='+answerStartId+'&timestamp='+timestampMs()+'&sign='+md5(salt+answerStartId+answerType+timestampMs())+'&user_type=1&is_from_share=1&_t='+timestampMs(),
+
             headers: {
-                cookie: gameCookie,
-                Host: host,
-                'Content-Type': 'application/x-www-form-urlencoded',
-                Connection: 'keep-alive',
-                Accept: '*/*',
-                'User-Agent': userAgent,
-                Referer: mrDtUrl + '&from=login&spm=89420.1.1.1',
-                'Accept-Language': 'zh-CN,zh-Hans;q=0.9',
+    Host: '89420.activity-20.m.duiba.com.cn',
+    Connection: 'keep-alive',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36 MicroMessenger/7.0.4.501 NetType/WIFI MiniProgramEnv/Windows WindowsWechat/WMPF',
+    'Content-Type': 'application/x-www-form-urlencoded',
+    Accept: '*/*',
+    'Sec-Fetch-Site': 'same-origin',
+    'Sec-Fetch-Mode': 'cors',
+    'Sec-Fetch-Dest': 'empty',
+    Referer: 'https://89420.activity-20.m.duiba.com.cn/projectx/p129446ea/index.html?appID=89420&from=login&spm=89420.1.1.1',
+    'Accept-Language': 'en-us,en',
+    Cookie: gameCookie,
+    'Accept-Encoding': 'gzip, deflate'
             },
             data: {}
         };
@@ -4085,7 +4143,9 @@ async function answerSubmit(baseUrl) {
             log(`\n【debug】=============== 这是 提交答题 请求 url ===============`);
             log(JSON.stringify(options));
         }
+
         axios.request(options).then(function (response) {
+
             try {
                 var data = response.data;
                 if (debug) {
@@ -4591,7 +4651,7 @@ var options = {
 
 }
 async function finishJc(num) {
-    await loginFreePlugin();
+    await loginFreePlugin(jc);
     await $.wait(3000)
     if (loginUrl == "") {
         log(`账号【${num}】登录竞猜异常，自动跳过任务！`);
