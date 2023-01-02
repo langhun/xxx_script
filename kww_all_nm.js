@@ -168,8 +168,8 @@ _0x13ceea,
                 log(`\n==== 海岛游乐场 ====\n`)
                 await finishHd(num);
                 //await $.wait(3000)
-                 log(`\n==== 天降好礼 ====\n`)
-                 await finishTj(num);
+                 //log(`\n==== 天降好礼 ====\n`)
+                 //await finishTj(num);
                  //await $.wait(3000)
                  log(`\n==== 青果园 ====\n`);
                   await finishQgy(num);
