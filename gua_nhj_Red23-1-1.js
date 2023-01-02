@@ -6,7 +6,7 @@ https://u.jd.com/xxxxxxx
 
 返利变量：JD_nhj_rebateCode，若需要返利给自己，请自己修改环境变量[JD_nhj_rebateCode]
 xxxxxxx换成自己的返利 就是链接后面那7位字母
-export JD_nhj_rebateCode="mI9mVhV"
+export JD_nhj_rebateCode="xxxxxxx"
 
 需要助力ck中的pin值
 pin1换成对应的pin值 用,分开(填中文)
