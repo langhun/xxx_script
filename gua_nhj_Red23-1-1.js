@@ -20,6 +20,8 @@ export JD_nhj_redTimes="0"
 0 0,10,20 * * * https://raw.githubusercontent.com/smiek2121/scripts/master/gua_nhj_Red.js 年货节red
 
 */
+require("global-agent/bootstrap");
+global.GLOBAL_AGENT.HTTP_PROXY="http://10.0.0.116:18080";
 
 let rebateCodes = ''; // 返利变量
 let rebatePin = ''; // 助力pin变量
